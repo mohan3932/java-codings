@@ -1,0 +1,93 @@
+package electricitybill;
+
+import java.util.Scanner;
+
+public class ElectricityBillApp {
+
+    // Member variables
+    int consumerNo;
+    String consumerName;
+    int prevReading;
+    int currReading;
+    String connectionType;
+    double billAmount;
+
+    // Method to input values
+    public void getInput() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter Consumer Number: ");
+        consumerNo = sc.nextInt();
+        sc.nextLine();  // Clear buffer
+        System.out.print("Enter Consumer Name: ");
+        consumerName = sc.nextLine();
+        System.out.print("Enter Previous Month Reading: ");
+        prevReading = sc.nextInt();
+        System.out.print("Enter Current Month Reading: ");
+        currReading = sc.nextInt();
+        sc.nextLine();  // Clear buffer
+        System.out.print("Enter Connection Type (domestic/commercial): ");
+        connectionType = sc.nextLine();
+    }
+
+    // Method to calculate bill
+    public void calculateBill() {
+        int units = currReading - prevReading;
+
+        if (connectionType.equalsIgnoreCase("domestic")) {
+            if (units <= 100) {
+                billAmount = units * 1.0;
+            } else if (units <= 200) {
+                billAmount = 100 * 1.0 + (units - 100) * 2.5;
+            } else if (units <= 500) {
+                billAmount = 100 * 1.0 + 100 * 2.5 + (units - 200) * 4.0;
+            } else {
+                billAmount = 100 * 1.0 + 100 * 2.5 + 300 * 4.0 + (units - 500) * 6.0;
+            }
+        } else if (connectionType.equalsIgnoreCase("commercial")) {
+            if (units <= 100) {
+                billAmount = units * 2.0;
+            } else if (units <= 200) {
+                billAmount = 100 * 2.0 + (units - 100) * 4.5;
+            } else if (units <= 500) {
+                billAmount = 100 * 2.0 + 100 * 4.5 + (units - 200) * 6.0;
+            } else {
+                billAmount = 100 * 2.0 + 100 * 4.5 + 300 * 6.0 + (units - 500) * 7.0;
+            }
+        } else {
+            System.out.println("Invalid connection type.");
+        }
+    }
+
+    // Method to display bill
+    public void displayBill() {
+        System.out.println("\n--- Electricity Bill ---");
+        System.out.println("Consumer Number: " + consumerNo);
+        System.out.println("Consumer Name  : " + consumerName);
+        System.out.println("Previous Reading: " + prevReading);
+        System.out.println("Current Reading : " + currReading);
+        System.out.println("Connection Type : " + connectionType);
+        System.out.println("Total Amount    : ₹" + billAmount);
+    }
+
+    // Main method
+    public static void main(String[] args) {
+        ElectricityBillApp bill = new ElectricityBillApp();
+        bill.getInput();
+        bill.calculateBill();
+        bill.displayBill();
+    }
+}
+output:
+Enter Consumer Number: 101
+Enter Consumer Name: Mohan
+Enter Previous Month Reading: 500
+Enter Current Month Reading: 650
+Enter Connection Type (domestic/commercial): domestic
+
+--- Electricity Bill ---
+Consumer Number: 101
+Consumer Name  : M
+Previous Reading: 500
+Current Reading : 650
+Connection Type : domestic
+Total Amount    : ₹475.0
