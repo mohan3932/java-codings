@@ -1,0 +1,169 @@
+import java.util.Scanner;
+
+public class UnitConverter {
+
+    // Currency Conversion Methods
+    public static double dollarToInr(double dollar) {
+        return dollar * 83.12;
+    }
+
+    public static double euroToInr(double euro) {
+        return euro * 90.23;
+    }
+
+    public static double yenToInr(double yen) {
+        return yen * 0.57;
+    }
+
+    public static double inrToDollar(double inr) {
+        return inr / 83.12;
+    }
+
+    public static double inrToEuro(double inr) {
+        return inr / 90.23;
+    }
+
+    public static double inrToYen(double inr) {
+        return inr / 0.57;
+    }
+
+    // Distance Conversion Methods
+    public static double meterToKm(double meters) {
+        return meters / 1000;
+    }
+
+    public static double mileToKm(double miles) {
+        return miles * 1.60934;
+    }
+
+    public static double kmToMeter(double km) {
+        return km * 1000;
+    }
+
+    public static double kmToMile(double km) {
+        return km / 1.60934;
+    }
+
+    // Time Conversion Methods
+    public static double hoursToMinutes(double hours) {
+        return hours * 60;
+    }
+
+    public static double hoursToSeconds(double hours) {
+        return hours * 3600;
+    }
+
+    public static double minutesToHours(double minutes) {
+        return minutes / 60;
+    }
+
+    public static double secondsToHours(double seconds) {
+        return seconds / 3600;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\n=== Unit Converter Menu ===");
+            System.out.println("1. Currency Converter");
+            System.out.println("2. Distance Converter");
+            System.out.println("3. Time Converter");
+            System.out.println("0. Exit");
+            System.out.print("Choose an option: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    currencyMenu(sc);
+                    break;
+                case 2:
+                    distanceMenu(sc);
+                    break;
+                case 3:
+                    timeMenu(sc);
+                    break;
+                case 0:
+                    System.out.println("Exiting... Thank you!");
+                    break;
+                default:
+                    System.out.println("Invalid choice! Try again.");
+            }
+        } while (choice != 0);
+        sc.close();
+    }
+
+    // Currency Menu
+    static void currencyMenu(Scanner sc) {
+        System.out.println("\n-- Currency Converter --");
+        System.out.println("1. Dollar to INR");
+        System.out.println("2. Euro to INR");
+        System.out.println("3. Yen to INR");
+        System.out.println("4. INR to Dollar");
+        System.out.println("5. INR to Euro");
+        System.out.println("6. INR to Yen");
+        System.out.print("Enter choice: ");
+        int c = sc.nextInt();
+        System.out.print("Enter amount: ");
+        double amount = sc.nextDouble();
+        double result = 0;
+
+        switch (c) {
+            case 1: result = dollarToInr(amount); break;
+            case 2: result = euroToInr(amount); break;
+            case 3: result = yenToInr(amount); break;
+            case 4: result = inrToDollar(amount); break;
+            case 5: result = inrToEuro(amount); break;
+            case 6: result = inrToYen(amount); break;
+            default: System.out.println("Invalid currency option!"); return;
+        }
+        System.out.println("Converted Amount: " + result);
+    }
+
+    // Distance Menu
+    static void distanceMenu(Scanner sc) {
+        System.out.println("\n-- Distance Converter --");
+        System.out.println("1. Meter to KM");
+        System.out.println("2. Mile to KM");
+        System.out.println("3. KM to Meter");
+        System.out.println("4. KM to Mile");
+        System.out.print("Enter choice: ");
+        int c = sc.nextInt();
+        System.out.print("Enter distance: ");
+        double dist = sc.nextDouble();
+        double result = 0;
+
+        switch (c) {
+            case 1: result = meterToKm(dist); break;
+            case 2: result = mileToKm(dist); break;
+            case 3: result = kmToMeter(dist); break;
+            case 4: result = kmToMile(dist); break;
+            default: System.out.println("Invalid distance option!"); return;
+        }
+        System.out.println("Converted Distance: " + result);
+    }
+
+    // Time Menu
+    static void timeMenu(Scanner sc) {
+        System.out.println("\n-- Time Converter --");
+        System.out.println("1. Hours to Minutes");
+        System.out.println("2. Hours to Seconds");
+        System.out.println("3. Minutes to Hours");
+        System.out.println("4. Seconds to Hours");
+        System.out.print("Enter choice: ");
+        int c = sc.nextInt();
+        System.out.print("Enter time: ");
+        double time = sc.nextDouble();
+        double result = 0;
+
+        switch (c) {
+            case 1: result = hoursToMinutes(time); break;
+            case 2: result = hoursToSeconds(time); break;
+            case 3: result = minutesToHours(time); break;
+            case 4: result = secondsToHours(time); break;
+            default: System.out.println("Invalid time option!"); return;
+        }
+        System.out.println("Converted Time: " + result);
+    }
+}
