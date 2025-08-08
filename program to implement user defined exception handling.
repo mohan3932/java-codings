@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+// Step 1: Create user-defined exception
+class InvalidAgeException extends Exception {
+    public InvalidAgeException(String message) {
+        super(message);
+    }
+}
+
+public class UserDefinedExceptionDemo {
+
+    // Step 2: Method to check age
+    public static void checkAge(int age) throws InvalidAgeException {
+        if (age < 18) {
+            throw new InvalidAgeException("Age must be 18 or above to proceed.");
+        } else {
+            System.out.println("✅ Access granted. You are eligible.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Step 3: Get user input
+            System.out.print("Enter your age: ");
+            int age = scanner.nextInt();
+
+            // Step 4: Check age using the method
+            checkAge(age);
+            
+        } catch (InvalidAgeException e) {
+            // Step 5: Handle custom exception
+            System.out.println("❌ Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Unexpected error: " + e.getMessage());
+        } finally {
+            scanner.close();
+        }
+    }
+}
